@@ -1,0 +1,7 @@
+crf_learn -f 3 -c 4.0 template crf_train_data.seg crf_model
+
+scp -P 22 -r WordSegmentation derc@222.29.100.75:/home/derc/
+
+crf_test -m crf_model crf_test_data_utf8.seg > msr_test4crf.tag.utf8
+
+./score Train_word_dict_utf8.txt test_gold_without_blank.txt msr_test4crf.tag2word.utf8 > score_result.txt
